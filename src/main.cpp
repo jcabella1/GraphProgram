@@ -1,3 +1,15 @@
+//*****************
+//Project Name: Graph Final Project
+//Project Description: A program that implements a graph with depth-first searching and breadth-first searching
+//Project Author: Abella, Jenny
+//Is this an extra credit Project:  No
+//Date completed: 12/16/2017
+//Operating system used: Windows 10
+//IDE Used: Eclipse Oxygen.1 (4.7.1)
+
+
+//*****************
+
 //
 //  main.cpp
 //  STL_DirGraph
@@ -108,7 +120,7 @@ void printGraph(Graph* theGraph) {
     for (int i=0; i<STARTSIZE; i++) {
         vector<GraphVertex*>* tempVector = theGraph->getDestVertex(i);
         if (tempVector != nullptr && tempVector->size() > 0) {
-            for (int j=0; j<tempVector->size(); j++) {
+            for (unsigned int j=0; j<tempVector->size(); j++) {
                 cout << i << "--" << tempVector->at(j)->Value << endl;
             }//for
         }//if
