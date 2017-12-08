@@ -114,18 +114,63 @@ void Graph::addEdgeUnDir(int source, int destination) {
 //an empty vector
 vector<GraphVertex*> Graph::searchDFS(int start) {
     vector<GraphVertex*> returnVector;
+    clearAllVisited();
     
-    /*
-     Create a Stack<Node> of nodes to visit;
-     Add v to the stack;
-     while (The stack is not empty) {
-     Pop a node from the stack, let it be u;
-     if (u has been visited) continue;
-     Add u to the visited set;
-     for (Node w connected to u)
-     Push w onto the stack;
-     }
-     */
+    GraphVertex* startingVertex = nullptr;
+
+    //Find the starting value in the array
+    for (pair<GraphVertex*, vector<GraphVertex*>* > i : edgeArray) {
+        //if you try to start with a vertex which does not exist, return an empty vector
+        if (i.first == nullptr) {
+        	return returnVector;
+        }//if
+        else if (i.first->Value == start) {
+        	startingVertex = i.first;
+        	break;
+        }//else if
+    }//for
+
+     //Create a Stack<GraphVertex*> of nodes to visit;
+   	stack<GraphVertex*> visitedNodes;
+     //Add v to the stack;
+   	visitedNodes.push(startingVertex);
+
+     while (!visitedNodes.empty()) {
+     //Pop a vertex from the stack, let it be u;
+    	 GraphVertex* u = visitedNodes.top();
+
+    	 cout << "Popping: " << visitedNodes.top()->Value << endl;
+    	 visitedNodes.pop();
+     //if (u has been visited) continue;
+    	 if (u->Visited) {
+    		 continue;
+    	 }//if
+    	 else {
+    	     //Make sure to mark u as visited
+        	 u->Visited = true;
+    	     //Add u to the visited set;
+    			 returnVector.push_back(u);
+
+    			 cout << "Visited: " << u->Value << endl;
+
+    	     //for (Node w connected to u)
+    	    	 for (pair<GraphVertex*, vector<GraphVertex*>* > w : edgeArray) {
+    	    	     //Push w onto the stack;
+    	    		 //Note: w is the nodes adjacent to u
+    	    		 if (w.first == u) {
+    	    			 for (unsigned int j = 0; j < w.second->size(); j++) {
+    	    				 if (w.second->at(j)->Visited) {
+    	    					 continue;
+    	    				 }//if
+    	    				 else {
+        	        			 visitedNodes.push(w.second->at(j));
+        	        			 cout << "Pushing: " << (w.second->at(j)->Value) << endl;
+    	    				 }//else
+    	    			 }//for
+    	    		 }//if
+    	    	 }//for
+    	 }//else
+     }//while
     
     return returnVector;
 }//searchDFS
@@ -136,18 +181,58 @@ vector<GraphVertex*> Graph::searchDFS(int start) {
 //an empty vector
 vector<GraphVertex*> Graph::searchBFS(int start) {
     vector<GraphVertex*> returnVector;
+    clearAllVisited();
+
+    GraphVertex* startingVertex = nullptr;
     
-    /*
-     Create a Queue<Node> of nodes to visit;
-     Add v to the stack;
-     while (The stack is not empty) {
-     Pop a node from the stack, let it be u;
-     if (u has been visited) continue;
-     Add u to the visited set;
-     for (Node w connected to u)
-     Push w onto the stack;
-     }
-     */
+    //Find the starting value in the array
+    for (pair<GraphVertex*, vector<GraphVertex*>* > i : edgeArray) {
+        //if you try to start with a vertex which does not exist, return an empty vector
+        if (i.first == nullptr) {
+        	return returnVector;
+        }//if
+        else if (i.first->Value == start) {
+        	startingVertex = i.first;
+        	break;
+        }//else if
+    }//for
+
+    //Create a Queue<Node> of nodes to visit;
+    queue<GraphVertex*> visitedNodes;
+    //Add v to the queue;
+    visitedNodes.push(startingVertex);
+    //while (The queue is not empty)
+    while (!visitedNodes.empty())
+    {
+    //dequeue node from the front of the queue, let it be u
+    	GraphVertex* u = visitedNodes.front();
+    	visitedNodes.pop();
+    //if (u has been visited) continue;
+    	if (u->Visited)
+    	{
+    		continue;
+    	}//if
+    	else
+    	{
+    		//Add u to the visited set;
+    		//for (Node w connected to u)
+   	    	 for (pair<GraphVertex*, vector<GraphVertex*>* > w : edgeArray) {
+   	    		 //Enqueue w into the queue
+   	    		 //Note: w is the nodes adjacent to u
+   	    		 if (w.first == u) {
+   	    			 for (unsigned int j = 0; j < w.second->size(); j++) {
+   	    				 if (w.second->at(j)->Visited) {
+   	    					 continue;
+   	    				 }//if
+   	    				 else {
+       	        			 visitedNodes.push(w.second->at(j));
+       	        			 cout << "Pushing: " << (w.second->at(j)->Value) << endl;
+   	    				 }//else
+   	    			 }//for
+   	    		 }//if
+   	    	 }//for
+    	}//else
+    }//while
     
     return returnVector;
 }//searchBFS
