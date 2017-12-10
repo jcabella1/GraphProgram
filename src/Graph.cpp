@@ -202,17 +202,28 @@ vector<GraphVertex*> Graph::searchBFS(int start) {
     	}//if
     	else
     	{
+    		//Make sure to mark u as visited
+    		u->Visited = true;
+
     		//Add u to the visited set;
+			 returnVector.push_back(u);
+			 cout << "Visited: " << u->Value << endl;
+
     		//for (Node w connected to u)
-   	    	 for (pair<GraphVertex*, vector<GraphVertex*>* > w : edgeArray) {
+   	    	 for (pair<GraphVertex*, vector<GraphVertex*>* > w : edgeArray)
+   	    	 {
    	    		 //Enqueue w into the queue
    	    		 //Note: w is the nodes adjacent to u
-   	    		 if (w.first == u) {
-   	    			 for (unsigned int j = 0; j < w.second->size(); j++) {
-   	    				 if (w.second->at(j)->Visited) {
+   	    		 if (w.first == u)
+   	    		 {
+   	    			 for (unsigned int j = 0; j < w.second->size(); j++)
+   	    			 {
+   	    				 if (w.second->at(j)->Visited)
+   	    				 {
    	    					 continue;
    	    				 }//if
-   	    				 else {
+   	    				 else
+   	    				 {
        	        			 visitedNodes.push(w.second->at(j));
        	        			 cout << "Pushing: " << (w.second->at(j)->Value) << endl;
    	    				 }//else
