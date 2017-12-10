@@ -116,19 +116,13 @@ vector<GraphVertex*> Graph::searchDFS(int start) {
     vector<GraphVertex*> returnVector;
     clearAllVisited();
     
-    GraphVertex* startingVertex = nullptr;
-
     //Find the starting value in the array
-    for (pair<GraphVertex*, vector<GraphVertex*>* > i : edgeArray) {
-        //if you try to start with a vertex which does not exist, return an empty vector
-        if (i.first == nullptr) {
-        	return returnVector;
-        }//if
-        else if (i.first->Value == start) {
-        	startingVertex = i.first;
-        	break;
-        }//else if
-    }//for
+    GraphVertex* startingVertex = edgeArray[start].first;
+
+    if (startingVertex == nullptr)
+    {
+    	return returnVector;
+    }//if
 
      //Create a Stack<GraphVertex*> of nodes to visit;
    	stack<GraphVertex*> visitedNodes;
@@ -183,19 +177,13 @@ vector<GraphVertex*> Graph::searchBFS(int start) {
     vector<GraphVertex*> returnVector;
     clearAllVisited();
 
-    GraphVertex* startingVertex = nullptr;
-    
     //Find the starting value in the array
-    for (pair<GraphVertex*, vector<GraphVertex*>* > i : edgeArray) {
-        //if you try to start with a vertex which does not exist, return an empty vector
-        if (i.first == nullptr) {
-        	return returnVector;
-        }//if
-        else if (i.first->Value == start) {
-        	startingVertex = i.first;
-        	break;
-        }//else if
-    }//for
+    GraphVertex* startingVertex = edgeArray[start].first;
+
+    if (startingVertex == nullptr)
+    {
+    	return returnVector;
+    }//if
 
     //Create a Queue<Node> of nodes to visit;
     queue<GraphVertex*> visitedNodes;
