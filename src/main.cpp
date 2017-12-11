@@ -27,46 +27,50 @@ void printGraph(Graph*);
 int main(int argc, const char * argv[]) {
     
     Graph* myGraph = new Graph();
+    int startIndex = 0;
 
     //Graph Example #1
-    myGraph->addVertex(1);
-    myGraph->addVertex(2);
-    myGraph->addVertex(3);
-    myGraph->addVertex(4);
-    myGraph->addVertex(5);
-    myGraph->addVertex(6);
-    myGraph->addVertex(7);
-    myGraph->addVertex(8);
-
-    myGraph->addEdgeUnDir(1, 3);
-    myGraph->addEdgeUnDir(1, 2);
-    myGraph->addEdgeUnDir(2, 4);
-    myGraph->addEdgeUnDir(2, 5);
-    myGraph->addEdgeUnDir(2, 6);
-    myGraph->addEdgeUnDir(3, 7);
-    myGraph->addEdgeUnDir(3, 8);
-    //End Graph Example #1
-
-    //Graph Example #2
-//    myGraph->addVertex(0);
+//    startIndex = 1;
 //    myGraph->addVertex(1);
 //    myGraph->addVertex(2);
 //    myGraph->addVertex(3);
 //    myGraph->addVertex(4);
 //    myGraph->addVertex(5);
+//    myGraph->addVertex(6);
+//    myGraph->addVertex(7);
+//    myGraph->addVertex(8);
 //
-//    myGraph->addEdgeUnDir(0, 1);
-//    myGraph->addEdgeUnDir(0, 2);
-//    myGraph->addEdgeUnDir(1, 2);
 //    myGraph->addEdgeUnDir(1, 3);
+//    myGraph->addEdgeUnDir(1, 2);
 //    myGraph->addEdgeUnDir(2, 4);
-//    myGraph->addEdgeUnDir(2, 3);
-//    myGraph->addEdgeUnDir(3, 4);
-//    myGraph->addEdgeUnDir(3, 5);
-//    myGraph->addEdgeUnDir(5, 4);
+//    myGraph->addEdgeUnDir(2, 5);
+//    myGraph->addEdgeUnDir(2, 6);
+//    myGraph->addEdgeUnDir(3, 7);
+//    myGraph->addEdgeUnDir(3, 8);
+    //End Graph Example #1
+
+    //Graph Example #2
+	startIndex = 0;
+    myGraph->addVertex(0);
+    myGraph->addVertex(1);
+    myGraph->addVertex(2);
+    myGraph->addVertex(3);
+    myGraph->addVertex(4);
+    myGraph->addVertex(5);
+
+    myGraph->addEdgeUnDir(0, 1);
+    myGraph->addEdgeUnDir(0, 2);
+    myGraph->addEdgeUnDir(1, 2);
+    myGraph->addEdgeUnDir(1, 3);
+    myGraph->addEdgeUnDir(2, 4);
+    myGraph->addEdgeUnDir(2, 3);
+    myGraph->addEdgeUnDir(3, 4);
+    myGraph->addEdgeUnDir(3, 5);
+    myGraph->addEdgeUnDir(5, 4);
     //End Graph Example #2
 
     //Graph Example #3
+//    startIndex = 0;
 //    myGraph->addVertex(0);
 //    myGraph->addVertex(1);
 //    myGraph->addVertex(2);
@@ -96,15 +100,15 @@ int main(int argc, const char * argv[]) {
 
     vector<GraphVertex*> aVertex;
 
-//    aVertex = myGraph->searchDFS(0);
-//    cout << "Printing the graph navigated starting at 0 using DFS" << endl;
-//    for (GraphVertex* i: aVertex) {
-//        cout << i->Value << endl;
-//    }//for
-//    aVertex.clear();
+    aVertex = myGraph->searchDFS(startIndex);
+    cout << "Printing the graph navigated starting at " << startIndex << " using DFS" << endl;
+    for (GraphVertex* i: aVertex) {
+        cout << i->Value << endl;
+    }//for
+    aVertex.clear();
 
-    aVertex = myGraph->searchBFS(1);
-    cout << "Printing the graph navigated starting at 1 using BFS" << endl;
+    aVertex = myGraph->searchBFS(startIndex);
+    cout << "Printing the graph navigated starting at " << startIndex << " using BFS" << endl;
     for (GraphVertex* i: aVertex) {
         cout << i->Value << endl;
     }//for

@@ -133,7 +133,6 @@ vector<GraphVertex*> Graph::searchDFS(int start) {
      //Pop a vertex from the stack, let it be u;
     	 GraphVertex* u = visitedNodes.top();
 
-    	 cout << "Popping: " << visitedNodes.top()->Value << endl;
     	 visitedNodes.pop();
      //if (u has been visited) continue;
     	 if (u->Visited) {
@@ -144,8 +143,6 @@ vector<GraphVertex*> Graph::searchDFS(int start) {
         	 u->Visited = true;
     	     //Add u to the visited set;
     			 returnVector.push_back(u);
-
-    			 cout << "Visited: " << u->Value << endl;
 
     	     //for (Node w connected to u)
     	    	 for (pair<GraphVertex*, vector<GraphVertex*>* > w : edgeArray) {
@@ -158,7 +155,6 @@ vector<GraphVertex*> Graph::searchDFS(int start) {
     	    				 }//if
     	    				 else {
         	        			 visitedNodes.push(w.second->at(j));
-        	        			 cout << "Pushing: " << (w.second->at(j)->Value) << endl;
     	    				 }//else
     	    			 }//for
     	    		 }//if
@@ -207,8 +203,6 @@ vector<GraphVertex*> Graph::searchBFS(int start) {
 
     		//Add u to the visited set;
 			 returnVector.push_back(u);
-			 cout << "Visited: " << u->Value << endl;
-
     		//for (Node w connected to u)
    	    	 for (pair<GraphVertex*, vector<GraphVertex*>* > w : edgeArray)
    	    	 {
@@ -225,7 +219,6 @@ vector<GraphVertex*> Graph::searchBFS(int start) {
    	    				 else
    	    				 {
        	        			 visitedNodes.push(w.second->at(j));
-       	        			 cout << "Pushing: " << (w.second->at(j)->Value) << endl;
    	    				 }//else
    	    			 }//for
    	    		 }//if
