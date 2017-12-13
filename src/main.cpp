@@ -3,7 +3,7 @@
 //Project Description: A program that implements a graph with depth-first searching and breadth-first searching
 //Project Author: Abella, Jenny
 //Is this an extra credit Project:  No
-//Date completed: 12/16/2017
+//Date completed: 12/13/2017
 //Operating system used: Windows 10
 //IDE Used: Eclipse Oxygen.1 (4.7.1)
 
